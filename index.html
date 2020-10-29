@@ -7,12 +7,53 @@
 
         <h1>BMI Calculator</h1>
 
-        <p>Calculate my body fat</p>
-
         <div>
             <p>Weight (kg)</p>
             <input type="text" id="weight"/>
         </div>
+
+        <div>
+            <p>Height (m)</p>
+            <input type="text" id="height"/>
+        </div>
+
+        <div>
+            <p>Result: <span id="result"></span></p>
+        </div>
+
+        <script>
+
+            function getBmiIndex(weight,height) {
+                if (weight){
+                    return 0;
+                }
+                if (height){
+                    return 0;
+                }
+                const result = weight / (height * height);
+                return parseFloat(result).toFixed(2);
+            };
+
+            const weightElement = document.getElementById('weight');
+            weightElement.addEventListener('change', ()=>{
+                console.log('Weight changed?');
+                calculateWithCurrentValue();
+            });
+            console.log(weightElement);
+
+            const heightElement = document.getElementById('height');
+            heightElement.addEventListener('change', ()=>{
+                console.log('Height changed?');
+                calculateWithCurrentValue();
+            });
+            console.log(heightElement);
+
+            function calculateWithCurrentValue(){
+                const resultElement = document.getElementById('result');
+                resultElement.innerHTML = getBmiIndex(weightElement.value, heightElement.value);
+            };
+
+        </script>
       
     </body>
 </html>
